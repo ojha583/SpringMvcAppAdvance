@@ -13,8 +13,8 @@ import javax.servlet.ServletRegistration;
 /**
  * Created by aojha on 1/14/22
  */
-public class LoveCalculatorApplicationInitializer implements WebApplicationInitializer {
-  @Override
+public class LoveCalculatorApplicationInitializer /*implements WebApplicationInitializer */{
+  //@Override
   public void onStartup(ServletContext servletContext) throws ServletException {
 
     //create spring web application container
