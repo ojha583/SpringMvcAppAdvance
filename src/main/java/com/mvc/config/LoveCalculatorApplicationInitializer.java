@@ -2,6 +2,7 @@ package com.mvc.config;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -17,8 +18,8 @@ public class LoveCalculatorApplicationInitializer implements WebApplicationIniti
   public void onStartup(ServletContext servletContext) throws ServletException {
 
     //create spring web application container
-    XmlWebApplicationContext webApplicationContext = new XmlWebApplicationContext();
-    webApplicationContext.setConfigLocation("classpath:beans.xml");
+    AnnotationConfigWebApplicationContext webApplicationContext = new AnnotationConfigWebApplicationContext();
+    webApplicationContext.register(LoveCalculatorAppConfig.class);
 
     //create dispatcher servlet
     DispatcherServlet dispatcherServlet = new DispatcherServlet(webApplicationContext);
