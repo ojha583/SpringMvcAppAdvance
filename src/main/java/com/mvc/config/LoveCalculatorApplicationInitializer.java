@@ -7,6 +7,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 
 /**
  * Created by aojha on 1/14/22
@@ -14,6 +15,18 @@ import javax.servlet.ServletException;
 public class LoveCalculatorApplicationInitializer implements WebApplicationInitializer {
   @Override
   public void onStartup(ServletContext servletContext) throws ServletException {
-    System.out.println("Testing whether TOMCAT CONTAINER DETECT THIS INITIALIZER CLASS");
+
+    //create spring web application container
+    XmlWebApplicationContext webApplicationContext = new XmlWebApplicationContext();
+    webApplicationContext.setConfigLocation("classpath:beans.xml");
+
+    //create dispatcher servlet
+    DispatcherServlet dispatcherServlet = new DispatcherServlet(webApplicationContext);
+
+
+    ServletRegistration.Dynamic dynamic = servletContext.addServlet("spring-dispatcher", dispatcherServlet);
+    dynamic.setLoadOnStartup(1);
+    dynamic.addMapping("/home.com/*");
+
   }
 }
